@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.future</groupId>
+  <artifactId>future-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>ribbon</module>
+    <module>eureka-sever</module>
+    <module>config-server</module>
+    <module>zuul</module>
+    <module>serviceAdmin</module>
+    <module>serviceFun</module>
+    <module>servicePay</module>
+    <module>serviceLogin</module>
+    <module>hystrix-ribbon</module>
+    <module>feign</module>
+    <module>hystrix-feign</module>
+    <module>hystrix-dashboard</module>
+    <module>turbine</module>
+    <module>sleuth</module>
+  </modules>
+
+  <!--通用版本设置-->
+  <properties>
+    <spring-cloud-starter-eureka-server.version>1.4.6.RELEASE</spring-cloud-starter-eureka-server.version>
+    <spring-cloud-starter-eureka.version>1.4.6.RELEASE</spring-cloud-starter-eureka.version>
+    <spring-cloud-starter-feign.version>1.4.6.RELEASE</spring-cloud-starter-feign.version>
+    <spring-cloud-starter-hystrix.version>1.4.6.RELEASE</spring-cloud-starter-hystrix.version>
+    <spring-cloud-starter-hystrix-dashboard.version>1.4.6.RELEASE</spring-cloud-starter-hystrix-dashboard.version>
+    <spring-cloud-starter-ribbon.version>1.4.6.RELEASE</spring-cloud-starter-ribbon.version>
+    <spring-cloud-starter-turbine.version>1.4.6.RELEASE</spring-cloud-starter-turbine.version>
+    <spring-cloud-starter-zuul.version>1.4.6.RELEASE</spring-cloud-starter-zuul.version>
+    <spring-boot-admin-server.version>2.1.1</spring-boot-admin-server.version>
+    <spring-boot-admin-server-ui.version>2.1.1</spring-boot-admin-server-ui.version>
+    <zipkin-server.version>2.11.12</zipkin-server.version>
+    <zipkin-autoconfigure-ui.version>2.11.12</zipkin-autoconfigure-ui.version>
+  </properties>
+
+  <parent>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>2.1.1.RELEASE</version>
+  </parent>
+
+</project>

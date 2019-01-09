@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: serviceAdmin
+
+server:
+  port: 7068

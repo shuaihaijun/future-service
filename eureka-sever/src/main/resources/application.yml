@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 8761
+#eureka.instance.hostname=localhost
+
+eureka:
+  instance:
+    hostname: 127.0.0.1
+#    lease-expiration-duration-in-seconds: 30 # 续约更新时间间隔（默认30秒）
+#    lease-renewal-interval-in-seconds: 10 # 续约到期时间（默认90秒）
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+#    healthcheck:
+#      enabled: true # 开启健康检查（需要spring-boot-starter-actuator依赖）
+  server:
+#    enable-self-preservation: false #自我保护机制 (正式环境建议打开)
+    #更改Eureka更新频率将打破服务器的自我保护功能，生产环境下不建议自定义这些配置。
+
+
+logging:
+  path: logback.xml

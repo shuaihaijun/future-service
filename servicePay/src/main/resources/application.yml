@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: servicePay
+
+server:
+  port: 7084
+
