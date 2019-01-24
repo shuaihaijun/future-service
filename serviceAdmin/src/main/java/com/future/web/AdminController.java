@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pays")
+@RequestMapping("/admin")
 public class AdminController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());

@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HystrixController {
 	
-  @Autowired
-  private HystrixService ribbonHystrixService;
+    @Autowired
+    private HystrixService ribbonHystrixService;
 
-  @RequestMapping("/hystrix")
-  public String findById(@RequestParam Integer a,@RequestParam Integer b) {
-    return this.ribbonHystrixService.findById(a,b);
-  }
+    @RequestMapping("/hystrix")
+    public String findById(@RequestParam Integer a,@RequestParam Integer b) {
+      return this.ribbonHystrixService.findById(a,b);
+    }
 }

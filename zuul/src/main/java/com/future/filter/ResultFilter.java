@@ -2,9 +2,6 @@ package com.future.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
-
-import io.reactivex.netty.protocol.http.server.HttpServerResponse;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,40 +14,32 @@ public class ResultFilter extends ZuulFilter  {
 
     @Override
     public String filterType() {
+        //定义filter的类型，有pre、route、post、error四种
         return "post";
     }
 
     @Override
     public int filterOrder() {
+        //定义filter的顺序，数字越小表示顺序越高，越先执行
         return 0;
     }
 
     @Override
     public boolean shouldFilter() {
+        //表示是否需要执行该filter，true表示执行，false表示不执行
         return true;
     }
 
     @Override
     public Object run() {
+        //filter需要执行的具体操作
+
         RequestContext ctx = RequestContext.getCurrentContext();
         HttpServletRequest request = ctx.getRequest();
-        //HttpServletResponse response = ctx.getResponse();
+        HttpServletResponse response = ctx.getResponse();
         
-        log.info("进入结果处理的过滤器！");
+        log.info("===============>进入结果处理的过滤器！");
         
-        log.info("===============");
-
-//        log.info(String.format("%s request to %s", request.getMethod(), request.getRequestURL().toString()));
-//        System.out.println(request.getRequestURL());
-        
-//        Object accessToken = request.getParameter("accessToken");
-//        if(accessToken == null) {
-//            log.warn("access token is empty");
-//            ctx.setSendZuulResponse(false);
-//            ctx.setResponseStatusCode(401);
-//            return null;
-//        }
-//        log.info("access token ok");
         return null;
     }
 

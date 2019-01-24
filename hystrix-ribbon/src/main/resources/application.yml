@@ -8,7 +8,7 @@ eureka:
     serviceUrl:
       defaultZone: http://localhost:7070/eureka/
   instance:
-    hostname:ribbon
+    hostname: ribbon
 ribbon:
   eureka:
     enabled: true
