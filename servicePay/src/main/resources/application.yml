@@ -5,3 +5,5 @@ spring:
 server:
   port: 7084
 
+swagger:
+  base-package: com.future.web

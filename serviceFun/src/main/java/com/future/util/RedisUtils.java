@@ -1,15 +1,11 @@
-package com.future.web;
+package com.future.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
-
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import java.io.InputStream;
-import java.util.Properties;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class RedisUtils {

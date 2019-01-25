@@ -8,3 +8,6 @@ spring:
 
 server:
   port: 7068
+
+swagger:
+  base-package: com.future.web

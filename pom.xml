@@ -38,6 +38,7 @@
     <spring-boot-admin-starter-client.version>2.0.4</spring-boot-admin-starter-client.version>
     <zipkin-server.version>2.11.12</zipkin-server.version>
     <zipkin-autoconfigure-ui.version>2.11.12</zipkin-autoconfigure-ui.version>
+    <swagger-spring-boot-starter.version>1.8.0.RELEASE</swagger-spring-boot-starter.version>
   </properties>
 
   <parent>

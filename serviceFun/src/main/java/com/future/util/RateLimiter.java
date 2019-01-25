@@ -1,4 +1,4 @@
-package com.future.web;
+package com.future.util;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
