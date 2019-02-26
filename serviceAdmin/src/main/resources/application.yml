@@ -1,13 +1,3 @@
 spring:
-  application:
-    name: serviceAdmin
-  boot:
-    admin:
-      ui:
-        public-url: http://localhost:7068/
-
-server:
-  port: 7068
-
-swagger:
-  base-package: com.future.web
+  profiles:
+    active: dev
