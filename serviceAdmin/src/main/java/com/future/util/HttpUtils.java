@@ -22,6 +22,7 @@ import org.apache.http.params.CoreConnectionPNames;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLException;
@@ -322,7 +323,7 @@ public class HttpUtils {
      * @return
      * @date :2015年11月5日上午9:02:56
      */
-    public static String doPost(String url, Object json) {
+    public static String doPost(String url, String json) {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         String httpStr = null;
         HttpPost httpPost = new HttpPost(url);
@@ -334,10 +335,12 @@ public class HttpUtils {
         CloseableHttpResponse response = null;
 
         try {
-            StringEntity stringEntity = new StringEntity(json.toString(), "UTF-8");//解决中文乱码问题
-            stringEntity.setContentEncoding("UTF-8");
-            stringEntity.setContentType("application/json");
-            httpPost.setEntity(stringEntity);
+            if(StringUtils.isEmpty(json)){
+                StringEntity stringEntity = new StringEntity(json, "UTF-8");//解决中文乱码问题
+                stringEntity.setContentEncoding("UTF-8");
+                stringEntity.setContentType("application/json");
+                httpPost.setEntity(stringEntity);
+            }
             response = httpClient.execute(httpPost);
             HttpEntity entity = response.getEntity();
             System.out.println(response.getStatusLine().getStatusCode());
@@ -458,7 +461,7 @@ public class HttpUtils {
      * 2016年12月1日下午5:07:44
      * @throws
      */
-    public static String doPostSSL(String apiUrl, Object json) {
+    public static String doPostSSL(String apiUrl, String json) {
         CloseableHttpClient httpClient = HttpClients.custom().setSSLSocketFactory(createSSLConnSocketFactory()).setConnectionManager(connMgr).setDefaultRequestConfig(requestConfig).build();
         HttpPost httpPost = new HttpPost(apiUrl);
         CloseableHttpResponse response = null;
@@ -466,10 +469,12 @@ public class HttpUtils {
 
         try {
             httpPost.setConfig(requestConfig);
-            StringEntity stringEntity = new StringEntity(json.toString(),"UTF-8");//解决中文乱码问题
-            stringEntity.setContentEncoding("UTF-8");
-            stringEntity.setContentType("application/json");
-            httpPost.setEntity(stringEntity);
+            if(!StringUtils.isEmpty(json)){
+                StringEntity stringEntity = new StringEntity(json,"UTF-8");//解决中文乱码问题
+                stringEntity.setContentEncoding("UTF-8");
+                stringEntity.setContentType("application/json");
+                httpPost.setEntity(stringEntity);
+            }
             response = httpClient.execute(httpPost);
             int statusCode = response.getStatusLine().getStatusCode();
             if (statusCode != HttpStatus.SC_OK) {

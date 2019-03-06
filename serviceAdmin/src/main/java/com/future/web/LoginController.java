@@ -31,6 +31,12 @@ public class LoginController {
     public ResultObject xcxLogin(HttpServletRequest request, HttpServletResponse response){
         String passKey=request.getParameter("passKey");
         String code=request.getParameter("code");
+
+        String encryptedData=request.getParameter("encryptedData");
+        String iv=request.getParameter("iv");
+        String rawData=request.getParameter("rawData");
+        String signature=request.getParameter("signature");
+
         if(StringUtils.isEmpty(passKey)&&StringUtils.isEmpty(code)){
             return new ResultObject(StatusCode.NULL.getCode());
         }

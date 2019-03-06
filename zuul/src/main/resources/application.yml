@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: zuul
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+server:
+  port: 7073
+
+zuul:
+  routes:
+    api-pays:
+      path: /servicePay/**
+      serviceId: servicePay
+    api-fun:
+      path: /serviceFun/**
+      serviceId: serviceFun
+    api-login:
+      path: /serviceLogin/**
+      serviceId: serviceLogin
+#      url: http://localhost:7084/pays/testConfig

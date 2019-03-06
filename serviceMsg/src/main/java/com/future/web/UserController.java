@@ -1,5 +1,9 @@
 package com.future.web;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/login")
-public class ComputeController {
+@RequestMapping("/user")
+@ApiModel(value = "/user",description = "用户中心")
+public class UserController {
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
@@ -24,16 +29,16 @@ public class ComputeController {
     @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/user" ,method = RequestMethod.GET)
-    public String user(@RequestParam Integer a, @RequestParam Integer b) {
+    @ApiOperation(value = "用户登录接口！")
+    @RequestMapping(value = "/login" ,method = RequestMethod.GET)
+    public String user(@RequestParam @ApiParam(value = "用户名") String username, @RequestParam @ApiParam(value = "密码") String password) {
         List<ServiceInstance> instance = client.getInstances(registration.getServiceId());
-        Integer r = a + b;
-        logger.info(a+":"+b);
-        logger.info("/add, host:" + instance.get(0).getPort()+ ", service_id:" + instance.get(0).getServiceId() + ", result:" + r);
-        return "From servicePay, Result is " + r;
+        logger.info("/add, host:" + instance.get(0).getPort()+ ", service_id:" + instance.get(0).getServiceId() + ", result:");
+        return "From servicePay, Result is ";
     }
 
     //A服务调用B服务
+    @ApiOperation("调用测试方法！")
     @RequestMapping(value="test",method=RequestMethod.GET)
     public String test(){
         List<ServiceInstance> instance = client.getInstances(registration.getServiceId());

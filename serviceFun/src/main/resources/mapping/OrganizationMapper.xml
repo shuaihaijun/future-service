@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.future.mapper.OrganizationMapper">
+  <resultMap id="BaseResultMap" type="com.future.entity.Organization">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="org_name" jdbcType="VARCHAR" property="orgName" />
+    <result column="org_type" jdbcType="TINYINT" property="orgType" />
+    <result column="org_phone" jdbcType="VARCHAR" property="orgPhone" />
+    <result column="org_desc" jdbcType="VARCHAR" property="orgDesc" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
+    <result column="org_web" jdbcType="VARCHAR" property="orgWeb" />
+    <result column="org_city" jdbcType="INTEGER" property="orgCity" />
+    <result column="org_image" jdbcType="VARCHAR" property="orgImage" />
+    <result column="org_grade" jdbcType="TINYINT" property="orgGrade" />
+    <result column="org_superior" jdbcType="INTEGER" property="orgSuperior" />
+    <result column="org_count" jdbcType="INTEGER" property="orgCount" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, org_name, org_type, org_phone, org_desc, address, org_web, org_city, org_image, 
+    org_grade, org_superior, org_count
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from organization
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCondition" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from organization
+    where
+      <trim prefixOverrides="and">
+        <if test="id != null">
+          and id=#{id}
+        </if>
+        <if test="orgName != null">
+          and org_name=#{orgName}
+        </if>
+        <if test="orgType != null">
+          and org_type=#{orgType}
+        </if>
+        <if test="orgCity != null">
+          and org_city=#{orgCity}
+        </if>
+        <if test="orgGrade != null">
+          and org_grade=#{orgGrade}
+        </if>
+        <if test="orgSuperior != null">
+          and org_superior=#{orgSuperior}
+        </if>
+      </trim>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from organization
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.future.entity.Organization">
+    insert into organization (id, org_name, org_type, 
+      org_phone, org_desc, address, 
+      org_web, org_city, org_image, 
+      org_grade, org_superior, org_count
+      )
+    values (#{id,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{orgType,jdbcType=TINYINT}, 
+      #{orgPhone,jdbcType=VARCHAR}, #{orgDesc,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{orgWeb,jdbcType=VARCHAR}, #{orgCity,jdbcType=INTEGER}, #{orgImage,jdbcType=VARCHAR}, 
+      #{orgGrade,jdbcType=TINYINT}, #{orgSuperior,jdbcType=INTEGER}, #{orgCount,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.future.entity.Organization">
+    insert into organization
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="orgName != null">
+        org_name,
+      </if>
+      <if test="orgType != null">
+        org_type,
+      </if>
+      <if test="orgPhone != null">
+        org_phone,
+      </if>
+      <if test="orgDesc != null">
+        org_desc,
+      </if>
+      <if test="address != null">
+        address,
+      </if>
+      <if test="orgWeb != null">
+        org_web,
+      </if>
+      <if test="orgCity != null">
+        org_city,
+      </if>
+      <if test="orgImage != null">
+        org_image,
+      </if>
+      <if test="orgGrade != null">
+        org_grade,
+      </if>
+      <if test="orgSuperior != null">
+        org_superior,
+      </if>
+      <if test="orgCount != null">
+        org_count,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orgName != null">
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null">
+        #{orgType,jdbcType=TINYINT},
+      </if>
+      <if test="orgPhone != null">
+        #{orgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgDesc != null">
+        #{orgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orgWeb != null">
+        #{orgWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCity != null">
+        #{orgCity,jdbcType=INTEGER},
+      </if>
+      <if test="orgImage != null">
+        #{orgImage,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGrade != null">
+        #{orgGrade,jdbcType=TINYINT},
+      </if>
+      <if test="orgSuperior != null">
+        #{orgSuperior,jdbcType=INTEGER},
+      </if>
+      <if test="orgCount != null">
+        #{orgCount,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.future.entity.Organization">
+    update organization
+    <set>
+      <if test="orgName != null">
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="orgType != null">
+        org_type = #{orgType,jdbcType=TINYINT},
+      </if>
+      <if test="orgPhone != null">
+        org_phone = #{orgPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="orgDesc != null">
+        org_desc = #{orgDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="orgWeb != null">
+        org_web = #{orgWeb,jdbcType=VARCHAR},
+      </if>
+      <if test="orgCity != null">
+        org_city = #{orgCity,jdbcType=INTEGER},
+      </if>
+      <if test="orgImage != null">
+        org_image = #{orgImage,jdbcType=VARCHAR},
+      </if>
+      <if test="orgGrade != null">
+        org_grade = #{orgGrade,jdbcType=TINYINT},
+      </if>
+      <if test="orgSuperior != null">
+        org_superior = #{orgSuperior,jdbcType=INTEGER},
+      </if>
+      <if test="orgCount != null">
+        org_count = #{orgCount,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.future.entity.Organization">
+    update organization
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      org_type = #{orgType,jdbcType=TINYINT},
+      org_phone = #{orgPhone,jdbcType=VARCHAR},
+      org_desc = #{orgDesc,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      org_web = #{orgWeb,jdbcType=VARCHAR},
+      org_city = #{orgCity,jdbcType=INTEGER},
+      org_image = #{orgImage,jdbcType=VARCHAR},
+      org_grade = #{orgGrade,jdbcType=TINYINT},
+      org_superior = #{orgSuperior,jdbcType=INTEGER},
+      org_count = #{orgCount,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,9 +1,11 @@
 package com.future.entity;
 
+import java.util.Date;
+
 public class User {
     private Integer id;
 
-    private String name;
+    private String username;
 
     private String password;
 
@@ -19,9 +21,13 @@ public class User {
 
     private Byte status;
 
-    private Byte type;
+    private Byte userType;
 
     private Byte source;
+
+    private Date operDate;
+
+
 
     public Integer getId() {
         return id;
@@ -31,13 +37,6 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
 
     public String getPassword() {
         return password;
@@ -95,19 +94,35 @@ public class User {
         this.status = status;
     }
 
-    public Byte getType() {
-        return type;
-    }
-
-    public void setType(Byte type) {
-        this.type = type;
-    }
-
     public Byte getSource() {
         return source;
     }
 
     public void setSource(Byte source) {
         this.source = source;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Byte getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Byte userType) {
+        this.userType = userType;
+    }
+
+    public Date getOperDate() {
+        return operDate;
+    }
+
+    public void setOperDate(Date operDate) {
+        this.operDate = operDate;
     }
 }

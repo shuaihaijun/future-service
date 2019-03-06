@@ -13,7 +13,8 @@
     <module>serviceAdmin</module>
     <module>serviceFun</module>
     <module>servicePay</module>
-    <module>serviceLogin</module>
+    <module>serviceMsg</module>
+    <module>serviceMt4</module>
     <module>hystrix-ribbon</module>
     <module>feign</module>
     <module>hystrix-feign</module>

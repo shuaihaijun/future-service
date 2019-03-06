@@ -31,10 +31,8 @@ public class AdminService {
             log.error("error: 参数为空！");
             return;
         }
-
-        if(user.getPasskey()==null){
-            user.setPasskey(UUID.randomUUID().toString());
-        }
+        /*用户信息变动，需要重置登录key*/
+        user.setPasskey(UUID.randomUUID().toString().replaceAll("-",""));
         /*这里填充必要值*/
 
         userMapper.insertSelective(user);
@@ -47,6 +45,16 @@ public class AdminService {
      */
     public void update(User user){
 
+        if(user==null||user.getOpenId()==null){
+            log.error("error: 参数为空！");
+            return;
+        }
+        /*用户信息变动，需要重置登录key*/
+        user.setPasskey(UUID.randomUUID().toString().replaceAll("-",""));
+
+        /*这里填充必要值*/
+
+        userMapper.updateByCondition(user);
         return;
     }
 

@@ -12,4 +12,6 @@ public interface UserMapper {
     int insertSelective(User record);
 
     List<User> selectByCondition(Map map);
+
+    int updateByCondition(User record);
 }

@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.future.constant.XcxErrCode;
 import com.future.entity.User;
+import com.future.util.HttpUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,6 @@ public class LoginService {
 
     Logger log= LoggerFactory.getLogger(LoginService.class);
 
-    @Autowired
-    private RestTemplate restTemplate;
     @Autowired
     private AdminService adminService;
 
@@ -39,12 +38,16 @@ public class LoginService {
         String sessionKey="";
         String unionid="";
         String url="https://api.weixin.qq.com/sns/jscode2session";
-        url+=url+"?appid="+appId;
-        url+=url+"&&secret="+secret;
-        url+=url+"&js_code"+code;
-        url+=url+"&grant_type=authorization_code";
+        url=url+"?appid="+appId;
+        url=url+"&&secret="+secret;
+        url=url+"&js_code="+code;
+        url=url+"&grant_type=authorization_code";
 
-        String result=restTemplate.postForObject(url,null,String.class);
+        log.info(url);
+
+        String result= HttpUtils.doPostSSL(url,"");
+
+        log.info(result);
 
         if(StringUtils.isEmpty(result)){
             log.error("登录失败 result:"+result);
@@ -53,12 +56,12 @@ public class LoginService {
 
         JSONObject resultJson= JSON.parseObject(result);
         String errcode=resultJson.getString("errcode");
-        if(XcxErrCode.SUCCESS.getCode().equalsIgnoreCase(errcode)){
-            openid=resultJson.getString("unionid");
+        if(errcode==null||XcxErrCode.SUCCESS.getCode().equalsIgnoreCase(errcode)){
+            openid=resultJson.getString("openid");
             sessionKey=resultJson.getString("session_key");
             unionid=resultJson.getString("unionid");
         }else {
-            throw new RuntimeException(XcxErrCode.valueOf(errcode).getMsg());
+            throw new RuntimeException(XcxErrCode.getDesc(errcode));
         }
 
         User user=new User();
